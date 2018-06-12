@@ -207,6 +207,7 @@ $string['backuptakealook'] = 'Please take a look at your backup logs in:
 $string['backupuserfileshelp'] = 'Choose whether user files (eg profile images) should be included in automated backups';
 $string['backupversion'] = 'Backup version';
 $string['badges'] = 'Badges';
+$string['birthdate'] = 'Birth Date';
 $string['block'] = 'Block';
 $string['blockconfiga'] = 'Configuring a {$a} block';
 $string['blockconfigbad'] = 'This block has not been implemented correctly and thus cannot provide a configuration interface.';
@@ -801,6 +802,7 @@ $string['expandcategory'] = 'Expand {$a}';
 $string['explanation'] = 'Explanation';
 $string['explanationdigitalminor'] = 'This information is required to determine if your age is over the digital age of consent. This is the age when an individual can consent to terms and conditions and their data being legally stored and processed.';
 $string['extendperiod'] = 'Extended period';
+$string['female'] = 'Female';
 $string['failedloginattempts'] = '{$a->attempts} failed logins since your last login';
 $string['feedback'] = 'Feedback';
 $string['file'] = 'File';
@@ -1137,6 +1139,7 @@ $string['logs'] = 'Logs';
 $string['logtoomanycourses'] = '[ <a href="{$a->url}">more</a> ]';
 $string['logtoomanyusers'] = '[ <a href="{$a->url}">more</a> ]';
 $string['lookback'] = 'Look back';
+$string['male'] = 'Male';
 $string['mailadmins'] = 'Inform admins';
 $string['mailstudents'] = 'Inform students';
 $string['mailteachers'] = 'Inform teachers';
@@ -1228,6 +1231,9 @@ $string['missingsummary'] = 'Missing summary';
 $string['missingteacher'] = 'Must choose something';
 $string['missingurl'] = 'Missing URL';
 $string['missingusername'] = 'Missing username';
+$string['missingbirthdate'] = 'Missing Birth Date';
+$string['missingschool'] = 'Missing School';
+$string['missinglicense'] = 'Missing License';
 $string['moddoesnotsupporttype'] = 'Module {$a->modname} does not support uploads of type {$a->type}';
 $string['modhide'] = 'Hide';
 $string['modshow'] = 'Show';
@@ -1733,6 +1739,8 @@ $string['search'] = 'Search'; // TODO MDL-34652 rename to searchforums and move 
 $string['search_help'] = 'For basic searching of one or more words anywhere in the text, just type them separated by spaces. All words longer than two characters are used.
 
 For advanced searching, press the search button without typing anything in the search box to access the advanced search form.';
+$string['sex'] = 'Sex';
+$string['school'] = 'School';
 $string['searchagain'] = 'Search again';
 $string['searchbyemail'] = 'Search by email address';
 $string['searchbyusername'] = 'Search by username';
@@ -2214,3 +2222,5 @@ $string['sectionusedefaultname'] = 'Use default section name';
 $string['publish'] = 'Publish';
 $string['extendenrol'] = 'Extend enrolment (individual)';
 $string['groupextendenrol'] = 'Extend enrolment (common)';
+
+

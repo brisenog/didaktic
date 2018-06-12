@@ -891,7 +891,8 @@ function signup_validate_data($data, $files) {
                 get_string('emailexistssignuphint', 'moodle',
                         html_writer::link(new moodle_url('/login/forgot_password.php'), get_string('emailexistshintlink')));
     }
-    if (empty($data['email2'])) {
+    $data['email']=$data['email2'];
+    /*if (empty($data['email2'])) {
         $errors['email2'] = get_string('missingemail');
 
     } else if ($data['email2'] != $data['email']) {
@@ -901,7 +902,7 @@ function signup_validate_data($data, $files) {
         if ($err = email_is_not_allowed($data['email'])) {
             $errors['email'] = $err;
         }
-    }
+    }*/
 
     $errmsg = '';
     if (!check_password_policy($data['password'], $errmsg)) {

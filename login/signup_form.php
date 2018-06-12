@@ -1,3 +1,4 @@
+
 <?php
 // This file is part of Moodle - http://moodle.org/
 //
@@ -51,15 +52,17 @@ class login_signup_form extends moodleform implements renderable, templatable {
 
         $mform->addElement('header', 'supplyinfo', get_string('supplyinfo'),'');
 
+        
         $mform->addElement('text', 'email', get_string('email'), 'maxlength="100" size="25"');
         $mform->setType('email', core_user::get_property_type('email'));
         $mform->addRule('email', get_string('missingemail'), 'required', null, 'client');
         $mform->setForceLtr('email');
 
-        $mform->addElement('text', 'email2', get_string('emailagain'), 'maxlength="100" size="25"');
-        $mform->setType('email2', core_user::get_property_type('email'));
-        $mform->addRule('email2', get_string('missingemail'), 'required', null, 'client');
-        $mform->setForceLtr('email2');
+        //$mform->addElement('hidden', 'email2', '');
+        /*$mform->addElement('text', 'email2', get_string('emailagain'), 'maxlength="100" size="25"');
+        $mform->setType('email2', PARAM_NOTAGS);
+        $mform->addRule('email2', get_string('missingemail'), 'required', null, 'server');*/
+        
 
         $namefields = useredit_get_required_name_fields();
         foreach ($namefields as $field) {
@@ -70,12 +73,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
                 $stringid = 'required';
             }
             $mform->addRule($field, get_string($stringid), 'required', null, 'client');
-        }
-
-        $mform->addElement('text', 'city', get_string('city'), 'maxlength="120" size="20"');
-        $mform->setType('city', core_user::get_property_type('city'));
-        if (!empty($CFG->defaultcity)) {
-            $mform->setDefault('city', $CFG->defaultcity);
+    
         }
 
         $country = get_string_manager()->get_list_of_countries();
@@ -88,6 +86,38 @@ class login_signup_form extends moodleform implements renderable, templatable {
         }else{
             $mform->setDefault('country', '');
         }
+        $mform->addElement('text', 'license', get_string('license'), 'maxlength="100" size="12" autocapitalize="none"');
+        $mform->setType('license', PARAM_RAW);
+        $mform->addRule('license', get_string('missinglicense'), 'required', null, 'client');
+
+        $mform->addElement('date_selector', 'birthdate', get_string('birthdate'));
+        //$mform->setType('birth date', PARAM_RAW);
+        $mform->addRule('birthdate', get_string('missingbirthdate'), 'required', null, 'client');
+
+        
+        $radioarray=array();
+        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('male'), 1, $attributes);
+        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('female'), 0, $attributes);
+        $mform->addElement('radioarray', 'sex', get_string('sex'), $radioarray);
+        $mform->addGroup($radioarray, 'radioar', '', array(' '), false);
+        //$mform->setDefault('yesno', 0);
+
+
+
+        $mform->addElement('text', 'school', get_string('school'), 'maxlength="100" size="12" autocapitalize="none"');
+        $mform->setType('school', PARAM_RAW);
+        $mform->addRule('school', get_string('missingschool'), 'required', null, 'client');
+
+        
+
+        //$mform->addElement('hidden', 'city', 'Queretaro');
+        /*$mform->addElement('text', 'city', get_string('city'), 'maxlength="120" size="20"');
+        $mform->setType('city', core_user::get_property_type('city'));
+        if (!empty($CFG->defaultcity)) {
+            $mform->setDefault('city', $CFG->defaultcity);
+        }*/
+
+       
 
         profile_signup_fields($mform);
 
