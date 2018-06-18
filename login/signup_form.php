@@ -63,7 +63,6 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->setType('email2', PARAM_NOTAGS);
         $mform->addRule('email2', get_string('missingemail'), 'required', null, 'server');*/
         
-
         $namefields = useredit_get_required_name_fields();
         foreach ($namefields as $field) {
             $mform->addElement('text', $field, get_string($field), 'maxlength="100" size="30"');
@@ -94,22 +93,20 @@ class login_signup_form extends moodleform implements renderable, templatable {
         //$mform->setType('birth date', PARAM_RAW);
         $mform->addRule('birthdate', get_string('missingbirthdate'), 'required', null, 'client');
 
+        $options = array(
+            'h' => 'Male',
+            'm' => 'Female'
+        );
+        $select = $mform->addElement('select', 'sex', get_string('sex'), $options);
+        // This will select the sex Male.
+        $select->setSelected('h');
+        $mform->addRule('sex', get_string('missingsex'), 'required', null, 'client');
         
-        $radioarray=array();
-        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('male'), 1, $attributes);
-        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('female'), 0, $attributes);
-        $mform->addElement('radioarray', 'sex', get_string('sex'), $radioarray);
-        $mform->addGroup($radioarray, 'radioar', '', array(' '), false);
-        //$mform->setDefault('yesno', 0);
-
-
-
         $mform->addElement('text', 'school', get_string('school'), 'maxlength="100" size="12" autocapitalize="none"');
         $mform->setType('school', PARAM_RAW);
         $mform->addRule('school', get_string('missingschool'), 'required', null, 'client');
 
-        
-
+       
         //$mform->addElement('hidden', 'city', 'Queretaro');
         /*$mform->addElement('text', 'city', get_string('city'), 'maxlength="120" size="20"');
         $mform->setType('city', core_user::get_property_type('city'));

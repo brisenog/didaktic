@@ -891,6 +891,7 @@ function signup_validate_data($data, $files) {
                 get_string('emailexistssignuphint', 'moodle',
                         html_writer::link(new moodle_url('/login/forgot_password.php'), get_string('emailexistshintlink')));
     }
+    //se comento este parte de codigo si se llega a requerir en el futuro
     $data['email']=$data['email2'];
     /*if (empty($data['email2'])) {
         $errors['email2'] = get_string('missingemail');
