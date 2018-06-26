@@ -210,7 +210,7 @@ class auth_email_external extends external_api {
         );
     }
 
-    /**
+    /** 
      * Get the signup required settings and profile fields.
      *
      * @param  string $username               username
