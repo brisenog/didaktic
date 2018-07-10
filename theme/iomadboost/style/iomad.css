@@ -68,10 +68,10 @@
   background-color: #ffffff;
 }
 body {
-  background-color: #eeeeee;
+  background: url([[pix:theme|login-background-blue]]) no-repeat fixed 50%;
 }
 #page-footer a {
-  color: #f75701;
+  color: #ffffff;
 }
 
 #sitelogo {

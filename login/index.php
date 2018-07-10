@@ -23,6 +23,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 //formulario de registro
+/*
 require('../config.php');
 require_once($CFG->dirroot . '/user/editlib.php');
 require_once($CFG->libdir . '/authlib.php');
@@ -118,7 +119,7 @@ if ($mform_signup instanceof renderable) {
 echo $OUTPUT->footer();
 
 
-
+*/
 
 
 
@@ -151,7 +152,7 @@ echo $OUTPUT->footer();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- /*
+ 
 require('../config.php');
 require_once('lib.php');
 
