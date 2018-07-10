@@ -94,8 +94,8 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->addRule('birthdate', get_string('missingbirthdate'), 'required', null, 'client');
 
         $options = array(
-            'h' => 'Male',
-            'm' => 'Female'
+            'h' => 'Masculino',
+            'm' => 'Femenino'
         );
         $select = $mform->addElement('select', 'sex', get_string('sex'), $options);
         // This will select the sex Male.
