@@ -110,7 +110,7 @@ class auth_email_external_testcase extends externallib_advanced_testcase {
         );
 
         // Create new user.
-        $result = auth_email_external::signup_user($username, $password, $firstname, $lastname, $email, $city,  $country,
+       $result = auth_email_external::signup_user($username, $password, $firstname, $lastname, $email, $city,  $country,
                                                     '', '', $customprofilefields);
         $result = external_api::clean_returnvalue(auth_email_external::signup_user_returns(), $result);
         $this->assertTrue($result['success']);

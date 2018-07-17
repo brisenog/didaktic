@@ -193,6 +193,10 @@ class auth_email_external extends external_api {
                 'email' => new external_value(core_user::get_property_type('email'), 'A valid and unique email address'),
                 'city' => new external_value(core_user::get_property_type('city'), 'Home city of the user', VALUE_DEFAULT, ''),
                 'country' => new external_value(core_user::get_property_type('country'), 'Home country code', VALUE_DEFAULT, ''),
+                'license' => new external_value(core_user::get_property_type('license2'), 'License'),
+                'birhdate' => new external_value(core_user::get_property_type('birhdate')),
+                'sex' => new external_value(core_user::get_property_type('sex')),
+                'school' => new external_value(core_user::get_property_type('school')),
                 'recaptchachallengehash' => new external_value(PARAM_RAW, 'Recaptcha challenge hash', VALUE_DEFAULT, ''),
                 'recaptcharesponse' => new external_value(PARAM_NOTAGS, 'Recaptcha response', VALUE_DEFAULT, ''),
                 'customprofilefields' => new external_multiple_structure(
@@ -220,6 +224,11 @@ class auth_email_external extends external_api {
      * @param  string $email                  a valid and unique email address
      * @param  string $city                   home city of the user
      * @param  string $country                home country code
+     * @param  string $licese2                license
+     * @param  string birthdate 
+     * @param  string sex               
+     * @param  string school
+     * 
      * @param  string $recaptchachallengehash recaptcha challenge hash
      * @param  string $recaptcharesponse      recaptcha response
      * @param  array  $customprofilefields    user custom fields (also known as user profile fields)
@@ -245,6 +254,10 @@ class auth_email_external extends external_api {
                 'email' => $email,
                 'city' => $city,
                 'country' => $country,
+                'license2' => $license2,
+                'birhdate' => $birrhdate,
+                'sex' => $sex,
+                'school' => $school,
                 'recaptchachallengehash' => $recaptchachallengehash,
                 'recaptcharesponse' => $recaptcharesponse,
                 'customprofilefields' => $customprofilefields,

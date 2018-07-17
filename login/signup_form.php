@@ -85,21 +85,20 @@ class login_signup_form extends moodleform implements renderable, templatable {
         }else{
             $mform->setDefault('country', '');
         }
-        $mform->addElement('text', 'license', get_string('license'), 'maxlength="100" size="12" autocapitalize="none"');
-        $mform->setType('license', PARAM_RAW);
-        $mform->addRule('license', get_string('missinglicense'), 'required', null, 'client');
+        $mform->addElement('text', 'license2', get_string('license'), 'maxlength="10" size="12" autocapitalize="none"');
+        $mform->setType('license2', PARAM_RAW);
+        $mform->addRule('license2', get_string('missinglicense'), 'required', null, 'client');
 
         $mform->addElement('date_selector', 'birthdate', get_string('birthdate'));
-        //$mform->setType('birth date', PARAM_RAW);
         $mform->addRule('birthdate', get_string('missingbirthdate'), 'required', null, 'client');
 
         $options = array(
-            'h' => 'Male',
-            'm' => 'Female'
+            'M' => 'Masculino',
+            'F' => 'Femenino'
         );
         $select = $mform->addElement('select', 'sex', get_string('sex'), $options);
         // This will select the sex Male.
-        $select->setSelected('h');
+        $select->setSelected('M');
         $mform->addRule('sex', get_string('missingsex'), 'required', null, 'client');
         
         $mform->addElement('text', 'school', get_string('school'), 'maxlength="100" size="12" autocapitalize="none"');
@@ -116,7 +115,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
 
        
 
-        profile_signup_fields($mform);
+       profile_signup_fields($mform);
 
         if (signup_captcha_enabled()) {
             $mform->addElement('recaptcha', 'recaptcha_element', get_string('security_question', 'auth'));

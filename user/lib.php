@@ -105,6 +105,32 @@ function user_create_user($user, $updatepassword = true, $triggerevent = true) {
 
     // Insert the user into the database.
     $newuserid = $DB->insert_record('user', $user);
+    $con = new mysqli('localhost','root','test','licencias');
+    if (!$con) {
+        echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+        echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+        echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+        exit;
+    }
+    /*
+    echo "Éxito: Se realizó una conexión apropiada a MySQL! La base de datos mi_bd es genial." . PHP_EOL;
+    echo "Información del host: " . mysqli_get_host_info($con) . PHP_EOL;*/
+    
+   // mysqli_close($enlace);
+  
+$fecha = date('Y-m-d',$user->birthdate);
+
+  $ins = $con -> query("INSERT INTO  licencias (username,password,firstname,lastname,email,country,license,birthdate,sex,school) VALUES ('$user->username','$user->password','$user->firstname', '$user->lastname',
+    '$user->email','$user->country','$user->license2','$fecha','$user->sex','$user->school')");
+   /* if ($ins) {
+	echo "<script>
+	alert('El registro se guardado con exito');
+	</script>";
+    }else{
+	echo "<script>
+	alert('El registro no pudo ser guardado');
+	</script>";
+    }*/
 
     // Create USER context for this user.
     $usercontext = context_user::instance($newuserid);
