@@ -3,45 +3,52 @@
     //background: trant;sparen
     background-color: rgba(255, 255, 255, 0.8);
     width: 100%;
-    height: 65px;
+    //height: 65px;
+    height: 50px;
     position: fixed;
     z-index: 10;
-    padding-top: 20px;
-    nav {
-    float: right; /* Desplazamos el nav hacia la izquierda */
-        ul {
+    //padding-top: 20px;
+    .navegacion ul{
         list-style: none;
-        overflow: hidden; /* Limpiamos errores de float */
-        li {
-            float: left;
-            //font-family: Arial, sans-serif;
-            //font-size: 16px;
-            a {
-                //display: block; /* Convertimos los elementos a en elementos bloque para manipular el padding */
-                padding: 20px;
-                //color: #2c2c2c;
-                //text-decoration: none;
-                //padding: 13px 20px 11px;
-                margin: 0px;
-                font-size: 14px;
-                font-weight: 600;
-                text-transform: uppercase;
-                color: #2c2c2c;
-                border: 2px solid transparent;
-                position: relative;
-                border-radius: 3px;
-                &:hover {
-                    //background: #3ead47;
-                    color: #00a988;
-                    } 
-                
-                }
-            }
-               
-        }
-        
+        //float: right;
     }
-    
+    .menu > li{
+        position: relative;
+        display: inline-block;
+    }
+    .menu > li > a{
+        display: block;
+        //padding: 15px 20px;
+        padding: 13px 20px 11px;
+        color: #353535;
+        //font-family: Roboto, sans-serif;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .menu li a:hover{
+        color: #00a988;
+        transition: all .3s;
+    }
+    /* Submenu*/
+    .submenu{
+        position: absolute;
+        background: #333333;
+        width: 120%;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1.5s;
+    }
+    .submenu li a{
+        display: block;
+        padding: 15px;
+        color: #fff;
+        //font-family: Roboto, sans-serif;
+        text-decoration: none;
+    }
+    .menu li:hover .submenu{
+        visibility: visible;
+        opacity: 1;
+    }
 }
 #loginone-wrapper {
     font-family: Roboto, sans-serif;
