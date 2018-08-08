@@ -10,7 +10,9 @@
     //padding-top: 20px;
     .navegacion ul{
         list-style: none;
+        padding-left: 0rem;
         //float: right;
+        border-radius: .25rem
     }
     .menu > li{
         position: relative;
@@ -21,30 +23,36 @@
         //padding: 15px 20px;
         padding: 13px 20px 11px;
         color: #353535;
-        //font-family: Roboto, sans-serif;
+        font-family: Roboto,Arial,sans-serif;
         text-decoration: none;
         font-weight: 600;
     }
     .menu li a:hover{
         color: #00a988;
         transition: all .3s;
+
     }
     /* Submenu*/
     .submenu{
         position: absolute;
-        background: #333333;
-        width: 120%;
+        //background: #333333;
+        background: #ffffff;
+        width: 100%;
         visibility: hidden;
         opacity: 0;
-        transition: opacity 1.5s;
+        transition: opacity 0.5s;
     }
     .submenu li a{
         display: block;
         padding: 15px;
-        color: #fff;
-        //font-family: Roboto, sans-serif;
+        color: #353535;
+        font-family: Roboto,Arial,sans-serif;
         text-decoration: none;
+        font-size: 14px
     }
+    .submenu li a:hover{
+        background-color: #f8f8f8;
+    } 
     .menu li:hover .submenu{
         visibility: visible;
         opacity: 1;
@@ -357,6 +365,11 @@ h4 {
 }
 .bg-green-turquoise{
     background: #3b8461;
+}
+.bg-white { 
+    height: 205px;
+    padding-top: 120px;
+    padding-bottom: 880px;
 }
 .video{
     background: #fff url([[pix:theme|Franja-Video]]) no-repeat;
