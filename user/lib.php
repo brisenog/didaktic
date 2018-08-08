@@ -103,34 +103,89 @@ function user_create_user($user, $updatepassword = true, $triggerevent = true) {
         }
     }
 
-    // Insert the user into the database.
-    $newuserid = $DB->insert_record('user', $user);
-    $con = new mysqli('localhost','root','test','licencias');
-    if (!$con) {
-        echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-        echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-        echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-        exit;
+     
+   
+    function conex_base($ip,$usuario,$contras,$based){
+        $con = new mysqli($ip,$usuario,$contras,$based);
+        if (!$con) {
+            die("Connection failed: " . mysqli_connect_error());
+        }else{
+            //echo "conexion exitosa";
+        }
+       return $con;
     }
-    /*
-    echo "Éxito: Se realizó una conexión apropiada a MySQL! La base de datos mi_bd es genial." . PHP_EOL;
-    echo "Información del host: " . mysqli_get_host_info($con) . PHP_EOL;*/
-    
-   // mysqli_close($enlace);
-  
-$fecha = date('Y-m-d',$user->birthdate);
 
-  $ins = $con -> query("INSERT INTO  licencias (username,password,firstname,lastname,email,country,license,birthdate,sex,school) VALUES ('$user->username','$user->password','$user->firstname', '$user->lastname',
-    '$user->email','$user->country','$user->license2','$fecha','$user->sex','$user->school')");
-   /* if ($ins) {
-	echo "<script>
-	alert('El registro se guardado con exito');
-	</script>";
-    }else{
-	echo "<script>
-	alert('El registro no pudo ser guardado');
-	</script>";
-    }*/
+    $ip = '192.168.2.36';
+    $usuario = 'root';
+    $contras = 'test';
+    $based = 'licencias';
+    $conn = conex_base($ip,$usuario,$contras,$based);
+    
+    $pila = array();
+    $fecha = date('Y-m-d',$user->birthdate);
+   // $licencias = array();
+    $licen= $conn -> query("SELECT license FROM generar where license = '$user->license2'");
+    
+    if ($licen->num_rows > 0){
+        while($row = $licen->fetch_assoc()){
+            $lic=$row=["license"];   
+        }
+        $verif = $conn -> query("SELECT license FROM registro where license = '$lic'");
+            if ($verif->num_rows < 1){
+                // Insert the user into the database "moodle".
+                $newuserid = $DB->insert_record('user', $user);
+                $based = 'didakticged';
+                $con = conex_base($ip,$usuario,$contras,$based);
+
+                $id_user = $con -> query("SELECT id FROM  mdl_user where email = '$user->email'");
+                if ($id_user->num_rows > 0) {
+                    // output data of each row
+                    while($row = $id_user->fetch_assoc()) {
+                        $idu=$row["id"];  
+                    }
+                }
+                // Insert the user into the database "licencias"
+                $conn -> query("INSERT INTO  registro (user_id,username,password,firstname,lastname,email,country,license,birthdate,sex,school) VALUES ('$idu','$user->username','$user->password','$user->firstname', '$user->lastname',
+                '$user->email','$user->country','$user->license2','$fecha','$user->sex','$user->school')");
+                
+                //asignacion de curso
+                $asig_curs=$conn -> query("SELECT curso_id, rol FROM  asignar where license = '$user->license2'") ;
+                if ($asig_curs->num_rows > 0){
+                while($row = $asig_curs->fetch_assoc()){
+                //Select the licese 
+                $curs_id=$row["curso_id"];
+                $rol=$row["rol"];
+                //echo "(".$curs_id.",".$rol.")";
+               // array_push($pila,$curs_id,$rol);
+                
+                    $obten_curso=$conn -> query("SELECT context_id, enrol_id from cursos where id = '$curs_id'");
+                    if($obten_curso->num_rows >0){
+                        while($row = $obten_curso->fetch_assoc()){
+                            $conte_id = $row['context_id'];
+                            $enr_id = $row['enrol_id'];
+                            
+                            $con -> query("INSERT INTO mdl_user_enrolments(status,enrolid,userid,timestart,timeend,modifierid, timecreated,timemodified) VALUES ('0','$enr_id','$idu','1531950399','0','2','1531950471','1531950471')");
+                            $con -> query("INSERT INTO mdl_role_assignments(roleid,contextid,userid) VALUES ('$rol','$conte_id','$idu')");
+                            
+                        }
+                    }
+                }
+            }
+            }else{
+                echo "La licencia que inserto ya ha sido utilizada";
+            }   
+        }else{
+            echo "La licencia que puso no es valida";
+        }
+    
+ 
+    //pruebas
+    //echo $user = $DB->get_record_sql('SELECT id FROM {user} WHERE email = "$user->email"');
+    //mysqli_close($con);
+     //echo $user = $DB->get_record_sql('SELECT id FROM {user} WHERE email = "$user->email"');
+     //function asignar_curso(){
+     //$con->query("INSERT INTO mdl_user_enrolments (status,enrolid,userid,timestart,timeend,modifierid, timecreated,timemodified) VALUES ('0','29','$idu','1531950399','0','2','1531950471','1531950471')");        
+    //}
 
     // Create USER context for this user.
     $usercontext = context_user::instance($newuserid);
@@ -147,9 +202,10 @@ $fecha = date('Y-m-d',$user->birthdate);
     if ($triggerevent) {
         \core\event\user_created::create_from_userid($newuserid)->trigger();
     }
-
+    
     return $newuserid;
 }
+
 
 /**
  * Update a user with a user object (will compare against the ID)

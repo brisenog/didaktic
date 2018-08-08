@@ -928,7 +928,7 @@ function signup_validate_data($data, $files) {
 function signup_setup_new_user($user) {
     global $CFG;
 
-    $user->confirmed   = 0;
+    $user->confirmed   = 1;
     $user->lang        = current_language();
     $user->firstaccess = 0;
     $user->timecreated = time();
