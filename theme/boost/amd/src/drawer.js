@@ -105,7 +105,7 @@ define(['jquery', 'core/custom_interaction_events', 'core/log'],
         var open = trigger.attr('aria-expanded') == 'true';
         if (!open) {
             // Open.
-            trigger.attr('aria-expanded', 'true');
+            trigger.attr('aria-expanded', 'false');
             drawer.attr('aria-hidden', 'false');
             drawer.focus();
             body.addClass('drawer-open-' + side);
