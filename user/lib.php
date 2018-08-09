@@ -1,5 +1,3 @@
-
-
 <?php
 // This file is part of Moodle - http://moodle.org/
 //
@@ -159,8 +157,7 @@ function user_create_user($user, $updatepassword = true, $triggerevent = true) {
                     //Select the licese 
                     $curs_id=$row["curso_id"];
                     $rol=$row["rol"];
-                    //echo "(".$curs_id.",".$rol.")";
-                // array_push($pila,$curs_id,$rol);
+                 
                     
                         $obten_curso=$conn -> query("SELECT context_id, enrol_id from cursos where id = '$curs_id'");
                         if($obten_curso->num_rows >0){
@@ -223,7 +220,6 @@ function user_create_user($user, $updatepassword = true, $triggerevent = true) {
         }else{
             echo "La licencia que puso no es valida";
         }
-    
 
     // Create USER context for this user.
     $usercontext = context_user::instance($newuserid);
