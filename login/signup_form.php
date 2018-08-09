@@ -36,24 +36,24 @@ class login_signup_form extends moodleform implements renderable, templatable {
 
         $mform = $this->_form;
 
-        $mform->addElement('header', 'createuserandpass', get_string('createuserandpass'), '');
+       // $mform->addElement('header', 'createuserandpass', get_string('createuserandpass'), '');
 
 
-        $mform->addElement('text', 'username', get_string('username'), 'maxlength="100" size="12" autocapitalize="none"');
+        $mform->addElement('text', 'username', get_string('username'), 'maxlength="100" size="30" autocapitalize="none"');
         $mform->setType('username', PARAM_RAW);
         $mform->addRule('username', get_string('missingusername'), 'required', null, 'client');
 
-        if (!empty($CFG->passwordpolicy)){
+       /* if (!empty($CFG->passwordpolicy)){
             $mform->addElement('static', 'passwordpolicyinfo', '', print_password_policy());
-        }
-        $mform->addElement('password', 'password', get_string('password'), 'maxlength="32" size="12"');
+        }*/
+        $mform->addElement('password', 'password', get_string('password'), 'maxlength="32" size="30"');
         $mform->setType('password', core_user::get_property_type('password'));
         $mform->addRule('password', get_string('missingpassword'), 'required', null, 'client');
 
-        $mform->addElement('header', 'supplyinfo', get_string('supplyinfo'),'');
+        //$mform->addElement('header', 'supplyinfo', get_string('supplyinfo'),'');
 
         
-        $mform->addElement('text', 'email', get_string('email'), 'maxlength="100" size="25"');
+        $mform->addElement('text', 'email', get_string('email'), 'maxlength="100" size="30"');
         $mform->setType('email', core_user::get_property_type('email'));
         $mform->addRule('email', get_string('missingemail'), 'required', null, 'client');
         $mform->setForceLtr('email');
@@ -85,25 +85,25 @@ class login_signup_form extends moodleform implements renderable, templatable {
         }else{
             $mform->setDefault('country', '');
         }
-        $mform->addElement('text', 'license2', get_string('license'), 'maxlength="10" size="12" autocapitalize="none"');
+        $mform->addElement('text', 'license2', get_string('license'), 'maxlength="10" size="30" autocapitalize="none"');
         $mform->setType('license2', PARAM_RAW);
         $mform->addRule('license2', get_string('missinglicense'), 'required', null, 'client');
 
         $mform->addElement('date_selector', 'birthdate', get_string('birthdate'));
-        $mform->addRule('birthdate', get_string('missingbirthdate'), 'required', null, 'client');
+        //$mform->addRule('birthdate', get_string('missingbirthdate'), 'required', null, 'client');
 
         $options = array(
             'M' => 'Masculino',
             'F' => 'Femenino'
         );
-        $select = $mform->addElement('select', 'sex', get_string('sex'), $options);
+        $select = $mform->addElement('select', 'sex', get_string('sex'), $options,'size="5"');
         // This will select the sex Male.
         $select->setSelected('M');
-        $mform->addRule('sex', get_string('missingsex'), 'required', null, 'client');
+       // $mform->addRule('sex', get_string('missingsex'), 'required', null, 'client');
         
-        $mform->addElement('text', 'school', get_string('school'), 'maxlength="100" size="12" autocapitalize="none"');
+        $mform->addElement('text', 'school', get_string('school'), 'maxlength="100" size="30" autocapitalize="none"');
         $mform->setType('school', PARAM_RAW);
-        $mform->addRule('school', get_string('missingschool'), 'required', null, 'client');
+       // $mform->addRule('school', get_string('missingschool'), 'required', null, 'client');
 
        
         //$mform->addElement('hidden', 'city', 'Queretaro');
