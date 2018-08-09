@@ -59,7 +59,7 @@ define(['jquery', 'core/custom_interaction_events', 'core/log'],
                 body.addClass('drawer-open-' + side);
                 trigger.attr('aria-expanded', 'true');
             } else {
-                trigger.attr('aria-expanded', 'false');
+                trigger.attr('aria-expanded', 'true');
             }
         }.bind(this));
 
@@ -79,11 +79,11 @@ define(['jquery', 'core/custom_interaction_events', 'core/log'],
             var drawer = $(document.getElementById(drawerid));
             var preference = trigger.attr('data-preference');
 
-            trigger.attr('aria-expanded', 'false');
+            trigger.attr('aria-expanded', 'true');
             body.removeClass('drawer-open-' + side);
             drawer.attr('aria-hidden', 'true');
             drawer.addClass('closed');
-            M.util.set_user_preference(preference, 'false');
+            M.util.set_user_preference(preference, 'true');
         });
     };
 
@@ -105,8 +105,8 @@ define(['jquery', 'core/custom_interaction_events', 'core/log'],
         var open = trigger.attr('aria-expanded') == 'true';
         if (!open) {
             // Open.
-            trigger.attr('aria-expanded', 'false');
-            drawer.attr('aria-hidden', 'false');
+            trigger.attr('aria-expanded', 'true');
+            drawer.attr('aria-hidden', 'true');
             drawer.focus();
             body.addClass('drawer-open-' + side);
             drawer.removeClass('closed');
@@ -114,10 +114,10 @@ define(['jquery', 'core/custom_interaction_events', 'core/log'],
         } else {
             // Close.
             body.removeClass('drawer-open-' + side);
-            trigger.attr('aria-expanded', 'false');
+            trigger.attr('aria-expanded', 'true');
             drawer.attr('aria-hidden', 'true');
             drawer.addClass('closed');
-            M.util.set_user_preference(preference, 'false');
+            M.util.set_user_preference(preference, 'true');
         }
     };
 
